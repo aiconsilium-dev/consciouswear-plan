@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>컨셔스웨어 사업화계획서 - AI 기반 바이오 재생가죽 배합 최적화 시스템</title>
+<style>
+/* ========== 기본 설정 ========== */
+:root {
+  --green: #2C5F2D;
+  --green-light: #3A7D3E;
+  --green-bg: #E8F0E8;
+  --text: #333;
+  --bg: #F5F5F5;
+  --white: #FFFFFF;
+  --gray-light: #E9ECEF;
+  --gray-header: #F0F0F0;
+  --gray-border: #DEE2E6;
+  --accent: #1B3A1C;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 10pt;
+  line-height: 1.6;
+  counter-reset: page-counter;
+}
+
+/* ========== A4 페이지 레이아웃 ========== */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 10mm auto;
+  padding: 25mm;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: relative;
+  page-break-after: always;
+  counter-increment: page-counter;
+}
+
+.page::after {
+  content: counter(page-counter);
+  position: absolute;
+  bottom: 15mm;
+  right: 25mm;
+  font-size: 9pt;
+  color: #999;
+}
+
+/* ========== 인쇄 CSS ========== */
+@page {
+  size: A4;
+  margin: 25mm;
+}
+
+@media print {
+  body { background: white; }
+  .page {
+    width: auto;
+    min-height: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+  .page::after {
+    bottom: -15mm;
+    right: 0;
+  }
+  .cover-page { page-break-after: always; }
+}
+
+/* ========== 표지 ========== */
+.cover-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cover-logo {
+  width: 80px;
+  height: 80px;
+  border: 3px solid var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.cover-logo-inner {
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1.2;
+}
+
+.cover-title-sub {
+  font-size: 12pt;
+  color: var(--green);
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.cover-title {
+  font-size: 26pt;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.cover-title-desc {
+  font-size: 13pt;
+  color: #666;
+  margin-bottom: 50px;
+  font-weight: 400;
+}
+
+.cover-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--green);
+  margin-bottom: 50px;
+}
+
+.cover-info {
+  font-size: 11pt;
+  color: #555;
+  line-height: 2;
+}
+
+.cover-info strong {
+  color: var(--text);
+}
+
+/* ========== 섹션 제목 ========== */
+.section-number {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 14pt;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.section-title {
+  font-size: 16pt;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--green);
+  display: flex;
+  align-items: center;
+}
+
+.sub-section-title {
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--green);
+  margin: 20px 0 12px 0;
+  padding-left: 10px;
+  border-left: 3px solid var(--green);
+}
+
+.sub-sub-title {
+  font-size: 10.5pt;
+  font-weight: 600;
+  color: var(--text);
+  margin: 15px 0 8px 0;
+}
+
+/* ========== 표 ========== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 9pt;
+}
+
+table th {
+  background: var(--gray-header);
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 10px;
+  border: 1px solid var(--gray-border);
+  color: var(--text);
+}
+
+table td {
+  background: var(--white);
+  padding: 7px 10px;
+  border: 1px solid var(--gray-border);
+  vertical-align: top;
+}
+
+table td.center { text-align: center; }
+table td.right { text-align: right; }
+
+/* ========== 리스트 ========== */
+ul, ol {
+  margin: 6px 0 6px 20px;
+}
+
+li {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+.bullet-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.bullet-list li {
+  padding-left: 16px;
+  position: relative;
+}
+
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+.dash-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.dash-list li {
+  padding-left: 16px;
+  position: relative;
+}
+
+.dash-list li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* ========== 강조 박스 ========== */
+.highlight-box {
+  background: var(--green-bg);
+  border-left: 4px solid var(--green);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.info-box {
+  background: #F8F9FA;
+  border: 1px solid var(--gray-border);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 4px;
+}
+
+/* ========== 다이어그램 공통 ========== */
+.diagram {
+  margin: 20px 0;
+  padding: 20px;
+  background: #FAFAFA;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+}
+
+.diagram-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--green);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* 플로우 다이어그램 */
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.flow-box {
+  background: var(--white);
+  border: 2px solid var(--green);
+  border-radius: 6px;
+  padding: 10px 14px;
+  text-align: center;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 100px;
+  line-height: 1.3;
+}
+
+.flow-box.primary {
+  background: var(--green);
+  color: white;
+}
+
+.flow-box.accent {
+  background: var(--green-bg);
+  border-color: var(--green);
+}
+
+.flow-box small {
+  display: block;
+  font-weight: 400;
+  font-size: 7.5pt;
+  margin-top: 3px;
+  opacity: 0.8;
+}
+
+.flow-arrow {
+  font-size: 16pt;
+  color: var(--green);
+  padding: 0 6px;
+  font-weight: 700;
+}
+
+.flow-arrow-down {
+  text-align: center;
+  font-size: 16pt;
+  color: var(--green);
+  padding: 4px 0;
+  font-weight: 700;
+}
+
+/* 타임라인 */
+.timeline {
+  position: relative;
+  padding: 10px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 80px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--green);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.timeline-date {
+  width: 70px;
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--green);
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  background: var(--green);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+  z-index: 1;
+}
+
+.timeline-content {
+  margin-left: 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 8.5pt;
+  flex: 1;
+}
+
+.timeline-content strong {
+  color: var(--green);
+}
+
+/* CSS 바 차트 */
+.bar-chart {
+  margin: 12px 0;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.bar-label {
+  width: 120px;
+  font-size: 8.5pt;
+  font-weight: 600;
+  text-align: right;
+  padding-right: 12px;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 24px;
+  background: var(--gray-light);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: 7.5pt;
+  color: white;
+  font-weight: 600;
+  transition: width 0.3s;
+}
+
+.bar-fill.light {
+  background: var(--green-light);
+}
+
+/* 프로세스 도식 */
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.process-card {
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+
+.process-card-num {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  background: var(--green);
+  color: white;
+  border-radius: 50%;
+  font-size: 8pt;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.process-card-title {
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.process-card-desc {
+  font-size: 7.5pt;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* 조직도 */
+.org-chart {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.org-top {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.org-top small {
+  display: block;
+  font-weight: 400;
+  font-size: 8pt;
+  opacity: 0.85;
+}
+
+.org-line {
+  width: 2px;
+  height: 20px;
+  background: var(--green);
+  margin: 0 auto;
+}
+
+.org-branch-line {
+  height: 2px;
+  background: var(--green);
+  margin: 0 80px;
+}
+
+.org-branches {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 0;
+}
+
+.org-branch {
+  text-align: center;
+}
+
+.org-branch-vline {
+  width: 2px;
+  height: 14px;
+  background: var(--green);
+  margin: 0 auto;
+}
+
+.org-box {
+  display: inline-block;
+  background: var(--white);
+  border: 2px solid var(--green);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 9pt;
+  font-weight: 600;
+}
+
+.org-box small {
+  display: block;
+  font-weight: 400;
+  font-size: 7.5pt;
+  color: #666;
+}
+
+/* 목차 */
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 8px;
+  font-size: 10.5pt;
+}
+
+.toc-num {
+  font-weight: 700;
+  color: var(--green);
+  width: 30px;
+  flex-shrink: 0;
+}
+
+.toc-text {
+  flex: 1;
+}
+
+.toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted #CCC;
+  margin: 0 8px;
+  min-width: 20px;
+}
+
+.toc-page {
+  font-size: 9pt;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.toc-sub {
+  padding-left: 30px;
+  font-size: 9.5pt;
+}
+
+.toc-sub .toc-num {
+  width: 24px;
+  font-size: 9.5pt;
+}
+
+/* 유틸리티 */
+.mt-10 { margin-top: 10px; }
+.mt-20 { margin-top: 20px; }
+.mb-10 { margin-bottom: 10px; }
+.mb-20 { margin-bottom: 20px; }
+.text-center { text-align: center; }
+.text-green { color: var(--green); }
+.fw-bold { font-weight: 700; }
+.fs-small { font-size: 8.5pt; }
+</style>
+</head>
+<body>
+
+<!-- ========================================== -->
+<!-- 표지 -->
+<!-- ========================================== -->
+<div class="page cover-page">
+  <div class="cover-logo">
+    <div class="cover-logo-inner">CW</div>
+  </div>
+  <div class="cover-title-sub">CONSCIOUSWEAR</div>
+  <div class="cover-title">사업화 계획서</div>
+  <div class="cover-title-desc">AI 기반 바이오 재생가죽 배합 최적화 및 물성/미감 예측 시스템</div>
+  <div class="cover-divider"></div>
+  <div class="cover-info">
+    <strong>(주)컨셔스웨어</strong><br>
+    대표이사 서인아<br>
+    2025년
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 목차 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span>목 차</span>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <div class="toc-item">
+      <span class="toc-num">1.</span>
+      <span class="toc-text">경영정보</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">3</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">2.</span>
+      <span class="toc-text">기술개발 및 사업화 실적</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">5</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">3.</span>
+      <span class="toc-text">사업화 대상 제품 개요</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">6</span>
+    </div>
+    <div class="toc-item toc-sub">
+      <span class="toc-num">가.</span>
+      <span class="toc-text">요약</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">6</span>
+    </div>
+    <div class="toc-item toc-sub">
+      <span class="toc-num">나.</span>
+      <span class="toc-text">원리 및 우수성</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">7</span>
+    </div>
+    <div class="toc-item toc-sub">
+      <span class="toc-num">다.</span>
+      <span class="toc-text">국내외 기술/시장/정책 현황</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">9</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">4.</span>
+      <span class="toc-text">사업화 추진전략 및 계획</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">11</span>
+    </div>
+    <div class="toc-item toc-sub">
+      <span class="toc-num">가.</span>
+      <span class="toc-text">추진 목표</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">11</span>
+    </div>
+    <div class="toc-item toc-sub">
+      <span class="toc-num">나.</span>
+      <span class="toc-text">사업화 가능성</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">12</span>
+    </div>
+    <div class="toc-item toc-sub">
+      <span class="toc-num">다.</span>
+      <span class="toc-text">추진계획</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">13</span>
+    </div>
+    <div class="toc-item toc-sub">
+      <span class="toc-num">라.</span>
+      <span class="toc-text">기대효과</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">14</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">5.</span>
+      <span class="toc-text">위탁사업 추진계획</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">15</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">6.</span>
+      <span class="toc-text">사업화 추진체계</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">16</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">7.</span>
+      <span class="toc-text">추진일정</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">17</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">8.</span>
+      <span class="toc-text">사후관리 계획</span>
+      <span class="toc-dots"></span>
+      <span class="toc-page">18</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 1. 경영정보 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">1</span>
+    <span>경영정보</span>
+  </div>
+
+  <div class="sub-section-title">1-1. 기업 개요</div>
+  <table>
+    <tr>
+      <th style="width:25%;">항목</th>
+      <th>내용</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">법인명</td>
+      <td>(주)컨셔스웨어 (Consciouswear Inc.)</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">설립일</td>
+      <td>2022년 1월</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">대표이사</td>
+      <td>서인아</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">소재지</td>
+      <td>서울시 중구 다동 한국콘텐츠진흥원 1307호</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">자본금</td>
+      <td>12,000,000원</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">주요사업</td>
+      <td>친환경 바이오 재생가죽 제조 및 판매</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">관계회사</td>
+      <td>언바운드(Unbound) - 전시/컨벤션 대행</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">인증</td>
+      <td>ISO 14001 (환경경영시스템), RCS (재활용소재인증)</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">수상</td>
+      <td>서울경제진흥원 ESG 우수기업상 (2025)</td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">1-2. 연혁</div>
+  <table>
+    <tr>
+      <th style="width:20%;">시기</th>
+      <th>주요 내용</th>
+    </tr>
+    <tr>
+      <td class="center">2022.01</td>
+      <td>법인 설립</td>
+    </tr>
+    <tr>
+      <td class="center">2022</td>
+      <td>바이오 재생가죽 원천기술 개발 착수, PU 코팅 업체 협력 시작</td>
+    </tr>
+    <tr>
+      <td class="center">2023</td>
+      <td>바이오매스 폴리올 이용 재생가죽 원단 특허 등록, 배합 레시피 DB 구축</td>
+    </tr>
+    <tr>
+      <td class="center">2024</td>
+      <td>ISO 14001 / RCS 인증 취득, 추가 특허 3건 출원, TRL 6단계 달성</td>
+    </tr>
+    <tr>
+      <td class="center">2025</td>
+      <td>서울경제진흥원 ESG 우수기업상 수상, AI 배합 최적화 시스템 개발 착수</td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">1-3. 대표이사 이력</div>
+  <table>
+    <tr>
+      <th style="width:25%;">항목</th>
+      <th>내용</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">성명</td>
+      <td>서인아</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">학력</td>
+      <td>경희대학교 의상학과 (학사) / KAIST 경영대학원 (석사)</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">전문분야</td>
+      <td>섬유/소재 산업 + 기술경영, 친환경 소재 사업화</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 경영정보 계속 -->
+<div class="page">
+  <div class="section-title" style="border-bottom: none; margin-bottom: 10px; padding-bottom: 0;">
+    <span class="section-number">1</span>
+    <span>경영정보 (계속)</span>
+  </div>
+
+  <div class="sub-section-title">1-4. 조직도</div>
+  <div class="diagram">
+    <div class="org-chart">
+      <div class="org-top">
+        서인아 대표이사
+        <small>총괄 경영/기술 전략</small>
+      </div>
+      <div class="org-line"></div>
+      <div class="org-branch-line"></div>
+      <div class="org-branches">
+        <div class="org-branch">
+          <div class="org-branch-vline"></div>
+          <div class="org-box">
+            기획팀
+            <small>박서빈</small>
+          </div>
+        </div>
+        <div class="org-branch">
+          <div class="org-branch-vline"></div>
+          <div class="org-box">
+            연구/프로덕션팀
+            <small>성현우 (팀장)</small>
+          </div>
+        </div>
+        <div class="org-branch">
+          <div class="org-branch-vline"></div>
+          <div class="org-box">
+            유통팀
+            <small>김정빈</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section-title">1-5. 주요 거래처 및 매출</div>
+  <table>
+    <tr>
+      <th style="width:10%;">순위</th>
+      <th style="width:35%;">거래처</th>
+      <th style="width:25%;">매출액 (백만원)</th>
+      <th style="width:30%;">비고</th>
+    </tr>
+    <tr>
+      <td class="center">1</td>
+      <td>빌드업코리아</td>
+      <td class="right">34</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="center">2</td>
+      <td>에이아이컨실리움</td>
+      <td class="right">30</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="center">3</td>
+      <td>라텔즈</td>
+      <td class="right">24</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="center">4</td>
+      <td>기타</td>
+      <td class="right">178</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th colspan="2">합계</th>
+      <th class="right">266</th>
+      <th></th>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">1-6. 재무 현황</div>
+  <table>
+    <tr>
+      <th>항목</th>
+      <th>금액</th>
+      <th>비고</th>
+    </tr>
+    <tr>
+      <td>자본금</td>
+      <td class="right">12,000,000원</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>매출액 (연간)</td>
+      <td class="right">266,000,000원</td>
+      <td>주요 거래처 합산</td>
+    </tr>
+  </table>
+
+  <div class="highlight-box mt-20">
+    <strong>핵심 역량 요약</strong>
+    <ul class="bullet-list" style="margin-top: 6px;">
+      <li>바이오탄소함량 약 78% 달성 - 업계 최고 수준</li>
+      <li>PU 코팅 업체와의 협력을 통한 수백건의 배합 레시피 데이터 보유</li>
+      <li>의상학 + 기술경영(KAIST) 융합 역량의 대표이사 리더십</li>
+      <li>ISO 14001 / RCS 인증으로 글로벌 환경 규격 대응 준비 완료</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 2. 기술개발 및 사업화 실적 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">2</span>
+    <span>기술개발 및 사업화 실적</span>
+  </div>
+
+  <div class="sub-section-title">2-1. 지식재산권 보유 현황</div>
+  <table>
+    <tr>
+      <th style="width:8%;">No.</th>
+      <th style="width:15%;">구분</th>
+      <th>명칭</th>
+      <th style="width:15%;">상태</th>
+    </tr>
+    <tr>
+      <td class="center">1</td>
+      <td class="center">특허</td>
+      <td>바이오매스 폴리올을 이용한 재생가죽 원단 제조방법</td>
+      <td class="center fw-bold text-green">등록</td>
+    </tr>
+    <tr>
+      <td class="center">2</td>
+      <td class="center">특허</td>
+      <td>친환경 바이오 재생가죽 배합 조성물 (출원 1)</td>
+      <td class="center">출원</td>
+    </tr>
+    <tr>
+      <td class="center">3</td>
+      <td class="center">특허</td>
+      <td>바이오 폴리올 기반 PU 코팅 조성물 (출원 2)</td>
+      <td class="center">출원</td>
+    </tr>
+    <tr>
+      <td class="center">4</td>
+      <td class="center">특허</td>
+      <td>재생가죽 원단의 물성 향상 방법 (출원 3)</td>
+      <td class="center">출원</td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">2-2. 인증 현황</div>
+  <table>
+    <tr>
+      <th style="width:30%;">인증명</th>
+      <th>설명</th>
+      <th style="width:15%;">취득시기</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">ISO 14001</td>
+      <td>환경경영시스템 국제표준 인증</td>
+      <td class="center">2024</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">RCS</td>
+      <td>Recycled Claim Standard - 재활용 소재 함량 글로벌 인증</td>
+      <td class="center">2024</td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">2-3. 기술성숙도 (TRL)</div>
+  <div class="highlight-box">
+    <strong>현재 TRL 6단계 - 시제품 개발 완료</strong>
+    <ul class="bullet-list" style="margin-top: 6px;">
+      <li>바이오 재생가죽 원단: 시제품 생산 및 물성 시험 완료</li>
+      <li>PU 코팅 레시피: 수백건 축적, 용도별 최적 배합비 도출 경험</li>
+      <li>KATRI 시험 통과 이력 다수 보유</li>
+    </ul>
+  </div>
+
+  <div class="sub-section-title">2-4. 사업화 실적</div>
+  <table>
+    <tr>
+      <th>구분</th>
+      <th>내용</th>
+      <th style="width:20%;">성과</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">제품 판매</td>
+      <td>바이오 재생가죽 소재/제품 B2B 납품</td>
+      <td class="center">연 매출 266M</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">전시/홍보</td>
+      <td>ESG/친환경 관련 전시회 참가, 소재 샘플 배포</td>
+      <td class="center">ESG 우수기업상</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">데이터 축적</td>
+      <td>PU 코팅 배합 레시피 DB 구축 (수백건)</td>
+      <td class="center">AI 학습 기반 확보</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ========================================== -->
+<!-- 3. 사업화 대상 제품 개요 - 가. 요약 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">3</span>
+    <span>사업화 대상 제품 개요</span>
+  </div>
+
+  <div class="sub-section-title">가. 요약</div>
+
+  <div class="highlight-box">
+    <strong>제품명: AI 기반 바이오 재생가죽 배합 최적화 및 물성/미감 예측 시스템</strong>
+  </div>
+
+  <table>
+    <tr>
+      <th style="width:25%;">항목</th>
+      <th>내용</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">핵심 기능</td>
+      <td>배합 레시피 데이터 기반 AI/ML 모델로 최적 배합비 자동 도출</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">물성 예측</td>
+      <td>인장강도, 내마모성, 견뢰도, 내수성 등 KATRI 시험 기준 최적화</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">미감 예측</td>
+      <td>촉감, 색감, 질감 등 정성적 요소 데이터화 및 예측</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">용도별 맞춤</td>
+      <td>장식품(미감) / 가방(내마모성) / 신발(내수성) 등 차등 기준 적용</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">환경 평가</td>
+      <td>실시간 LCA 산출, 유해물질 미검출 예측</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">TRL</td>
+      <td>6단계 (시제품 개발 완료) - 7~8단계 진입 목표</td>
+    </tr>
+  </table>
+
+  <!-- AI 배합 최적화 플로우 다이어그램 -->
+  <div class="diagram mt-20">
+    <div class="diagram-title">AI 배합 최적화 시스템 전체 플로우</div>
+    <div class="flow-row">
+      <div class="flow-box">
+        배합 레시피 DB
+        <small>수백건 축적 데이터</small>
+      </div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">
+        데이터 전처리
+        <small>정규화/피처 추출</small>
+      </div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box primary">
+        AI/ML 모델
+        <small>배합비 최적화 엔진</small>
+      </div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">
+        예측 결과
+        <small>물성 + 미감 + LCA</small>
+      </div>
+    </div>
+    <div class="flow-arrow-down">&#8595;</div>
+    <div class="flow-row">
+      <div class="flow-box accent">
+        용도별 기준 적용
+        <small>장식품/가방/신발</small>
+      </div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box accent">
+        KATRI 시험 기준 검증
+        <small>인장/내마모/견뢰도</small>
+      </div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box primary">
+        최적 배합비 도출
+        <small>실시간 추천</small>
+      </div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box accent">
+        환경 데이터 출력
+        <small>LCA/유해물질/DPP</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-sub-title mt-20">핵심 차별점</div>
+  <ul class="bullet-list">
+    <li><strong>물성 + 미감 동시 예측</strong> - 기존 솔루션 대비 정성적 요소까지 커버</li>
+    <li><strong>용도별 가중치 차등 적용</strong> - 단일 모델로 다양한 제품군 대응</li>
+    <li><strong>실시간 LCA 연동</strong> - 배합 변경 즉시 탄소배출량 계산</li>
+    <li><strong>유해물질 사전 스크리닝</strong> - 6가 크롬, TBT, 폼알데하이드 미검출 예측</li>
+  </ul>
+</div>
+
+<!-- ========================================== -->
+<!-- 3. 나. 원리 및 우수성 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title" style="border-bottom: none; margin-bottom: 10px; padding-bottom: 0;">
+    <span class="section-number">3</span>
+    <span>사업화 대상 제품 개요 (계속)</span>
+  </div>
+
+  <div class="sub-section-title">나. 원리 및 우수성</div>
+
+  <div class="sub-sub-title">1) 기술 원리</div>
+
+  <!-- 물성 예측 프로세스 도식 -->
+  <div class="diagram">
+    <div class="diagram-title">물성/미감 예측 프로세스</div>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-card-num">1</div>
+        <div class="process-card-title">데이터 수집</div>
+        <div class="process-card-desc">
+          기존 배합 레시피 수백건<br>
+          물성 시험 결과 (KATRI)<br>
+          미감 평가 데이터 (관능평가)
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-num">2</div>
+        <div class="process-card-title">피처 엔지니어링</div>
+        <div class="process-card-desc">
+          원료 성분/비율 정규화<br>
+          물성 지표 수치화<br>
+          미감 요소 정량 변환
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-num">3</div>
+        <div class="process-card-title">모델 학습</div>
+        <div class="process-card-desc">
+          회귀/분류 앙상블 모델<br>
+          물성별 개별 예측 모델<br>
+          미감 다중출력 모델
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-num">4</div>
+        <div class="process-card-title">최적화 엔진</div>
+        <div class="process-card-desc">
+          용도별 제약 조건 설정<br>
+          다목적 최적화 (Pareto)<br>
+          배합비 자동 탐색
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-num">5</div>
+        <div class="process-card-title">LCA 연동</div>
+        <div class="process-card-desc">
+          원료별 탄소배출계수 DB<br>
+          배합 변경 시 즉시 재계산<br>
+          유해물질 스크리닝
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-num">6</div>
+        <div class="process-card-title">결과 출력</div>
+        <div class="process-card-desc">
+          최적 배합비 추천<br>
+          물성/미감 예측 리포트<br>
+          환경 데이터 (DPP 대응)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-sub-title">2) 기술적 우수성</div>
+  <table>
+    <tr>
+      <th style="width:25%;">구분</th>
+      <th style="width:37%;">기존 방식</th>
+      <th style="width:38%;">AI 최적화 시스템 (본 제품)</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">배합 설계</td>
+      <td>엔지니어 경험 의존, 시행착오 반복</td>
+      <td>데이터 기반 자동 최적 배합비 도출</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">물성 예측</td>
+      <td>실물 시험 후 확인 (비용/시간 소요)</td>
+      <td>시험 전 예측으로 적합 배합만 시험</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">미감 평가</td>
+      <td>주관적 관능평가, 재현성 낮음</td>
+      <td>정량화된 미감 데이터로 객관적 예측</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">환경 데이터</td>
+      <td>별도 LCA 용역 (수백만원, 수주 소요)</td>
+      <td>실시간 자동 산출, DPP 데이터 즉시 생성</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">소요 시간</td>
+      <td>신규 배합 개발 수개월</td>
+      <td>수일 내 최적 후보 도출</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">전문인력</td>
+      <td>화학공학 전문 엔지니어 필수</td>
+      <td>비전문 인력도 시스템 활용 가능</td>
+    </tr>
+  </table>
+
+  <div class="sub-sub-title mt-20">3) 용도별 최적화 기준</div>
+  <table>
+    <tr>
+      <th style="width:18%;">제품 용도</th>
+      <th style="width:22%;">최우선 물성</th>
+      <th style="width:22%;">차순위 물성</th>
+      <th style="width:20%;">미감 가중치</th>
+      <th style="width:18%;">대표 제품</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">장식품</td>
+      <td class="center">색감/질감</td>
+      <td class="center">견뢰도</td>
+      <td class="center">높음 (60%)</td>
+      <td class="center">액세서리, 인테리어</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">가방</td>
+      <td class="center">내마모성</td>
+      <td class="center">인장강도</td>
+      <td class="center">중간 (30%)</td>
+      <td class="center">핸드백, 백팩</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">신발</td>
+      <td class="center">내수성</td>
+      <td class="center">내마모성</td>
+      <td class="center">중간 (25%)</td>
+      <td class="center">스니커즈, 부츠</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">가구</td>
+      <td class="center">인장강도</td>
+      <td class="center">견뢰도</td>
+      <td class="center">높음 (50%)</td>
+      <td class="center">소파, 의자</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ========================================== -->
+<!-- 3. 다. 국내외 기술/시장/정책 현황 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title" style="border-bottom: none; margin-bottom: 10px; padding-bottom: 0;">
+    <span class="section-number">3</span>
+    <span>사업화 대상 제품 개요 (계속)</span>
+  </div>
+
+  <div class="sub-section-title">다. 국내외 기술/시장/정책 현황</div>
+
+  <div class="sub-sub-title">1) 시장 현황</div>
+
+  <!-- 시장 규모 CSS 바 차트 -->
+  <div class="diagram">
+    <div class="diagram-title">글로벌 합성피혁/인조가죽 시장 규모 전망 (억 달러)</div>
+    <div class="bar-chart">
+      <div class="bar-item">
+        <div class="bar-label">2023년</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 55%;">약 350억$</div>
+        </div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">2025년 (E)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 65%;">약 410억$</div>
+        </div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">2028년 (E)</div>
+        <div class="bar-track">
+          <div class="bar-fill light" style="width: 80%;">약 520억$</div>
+        </div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">2030년 (E)</div>
+        <div class="bar-track">
+          <div class="bar-fill light" style="width: 95%;">약 630억$</div>
+        </div>
+      </div>
+    </div>
+    <p class="fs-small" style="text-align: right; color: #999; margin-top: 4px;">*출처: Grand View Research, MarketsandMarkets 종합</p>
+  </div>
+
+  <ul class="bullet-list">
+    <li><strong>글로벌 합성피혁 시장</strong>: 연평균 성장률(CAGR) 약 8~10% 전망</li>
+    <li><strong>바이오 기반 소재</strong>: 전체 합성피혁 중 친환경 소재 비중 매년 확대</li>
+    <li><strong>국내 시장</strong>: ESG 경영 확산으로 친환경 소재 수요 급증</li>
+    <li><strong>AI 소재 설계</strong>: Materials Informatics 분야 글로벌 투자 급증</li>
+  </ul>
+
+  <div class="sub-sub-title mt-20">2) 기술 현황</div>
+  <table>
+    <tr>
+      <th style="width:20%;">구분</th>
+      <th style="width:40%;">해외</th>
+      <th style="width:40%;">국내</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">바이오 가죽</td>
+      <td>Bolt Threads(Mylo), Modern Meadow 등 대형 투자 진행</td>
+      <td>초기 단계, 소수 스타트업 중심</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">AI 소재설계</td>
+      <td>Citrine Informatics, Materials Zone 등 SaaS 서비스 확산</td>
+      <td>반도체/배터리 중심, 가죽 분야 전무</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">배합 최적화</td>
+      <td>화학/고분자 분야 AI 적용 활발</td>
+      <td>가죽 배합 특화 AI 시스템 부재</td>
+    </tr>
+  </table>
+
+  <div class="highlight-box mt-20">
+    <strong>기술적 공백 (Gap)</strong>
+    <ul class="bullet-list" style="margin-top: 6px;">
+      <li>글로벌: AI 소재설계 도구는 존재하나, 바이오 재생가죽 특화 솔루션 부재</li>
+      <li>국내: 가죽 배합 최적화에 AI를 적용한 사례 전무</li>
+      <li>미감 예측: 촉감/질감 등 정성적 요소를 데이터화한 시도 극소</li>
+      <li>컨셔스웨어의 수백건 레시피 DB는 경쟁 우위의 핵심 자산</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 정책 현황 -->
+<div class="page">
+  <div class="section-title" style="border-bottom: none; margin-bottom: 10px; padding-bottom: 0;">
+    <span class="section-number">3</span>
+    <span>사업화 대상 제품 개요 (계속)</span>
+  </div>
+
+  <div class="sub-sub-title">3) 정책 현황</div>
+  <table>
+    <tr>
+      <th style="width:22%;">정책/규제</th>
+      <th style="width:48%;">내용</th>
+      <th style="width:30%;">본 시스템 대응</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">EU CBAM</td>
+      <td>탄소국경조정메커니즘 - 수출 제품의 탄소배출량 보고 의무화</td>
+      <td>실시간 LCA로 탄소배출량 자동 산출</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">EU DPP</td>
+      <td>디지털 제품 여권 - 제품 환경 정보 디지털 공개 의무화 (2027~)</td>
+      <td>배합별 환경 데이터 자동 생성/관리</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">REACH</td>
+      <td>EU 화학물질 규제 - 유해물질 사용 제한</td>
+      <td>유해물질 미검출 예측으로 사전 대응</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">K-ESG</td>
+      <td>국내 ESG 공시 의무화 확대 추세</td>
+      <td>환경 성과 데이터 자동 리포팅</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">녹색제품 인증</td>
+      <td>환경부 녹색제품 인증제 확대</td>
+      <td>바이오탄소함량 78% + 인증 데이터 제공</td>
+    </tr>
+  </table>
+
+  <div class="sub-sub-title mt-20">4) 경쟁 환경 분석</div>
+  <table>
+    <tr>
+      <th style="width:22%;">경쟁 요소</th>
+      <th style="width:26%;">기존 업체</th>
+      <th style="width:26%;">해외 AI 도구</th>
+      <th style="width:26%;">컨셔스웨어 (본 시스템)</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">배합 설계</td>
+      <td class="center">경험 기반</td>
+      <td class="center">범용 AI (가죽 비특화)</td>
+      <td class="center fw-bold text-green">가죽 특화 AI</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">레시피 DB</td>
+      <td class="center">개별 보유 (비표준)</td>
+      <td class="center">미보유</td>
+      <td class="center fw-bold text-green">수백건 표준화 DB</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">미감 예측</td>
+      <td class="center">불가</td>
+      <td class="center">제한적</td>
+      <td class="center fw-bold text-green">데이터 기반 예측</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">LCA 연동</td>
+      <td class="center">별도 용역</td>
+      <td class="center">일부 지원</td>
+      <td class="center fw-bold text-green">실시간 내장</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">규제 대응</td>
+      <td class="center">수동</td>
+      <td class="center">부분 지원</td>
+      <td class="center fw-bold text-green">CBAM/DPP 자동</td>
+    </tr>
+  </table>
+
+  <div class="highlight-box mt-20">
+    <strong>시장 기회 요약</strong>
+    <ul class="bullet-list" style="margin-top: 6px;">
+      <li>글로벌 합성피혁 시장 630억$ (2030) - 바이오 기반 비중 확대</li>
+      <li>EU 환경규제 강화(CBAM, DPP)로 환경 데이터 자동화 수요 폭증</li>
+      <li>국내 가죽 배합 AI 특화 솔루션 최초 진입자(First Mover) 지위 확보 가능</li>
+      <li>중소 가죽/소재 업체 대상 SaaS형 서비스 확장 가능</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 4. 사업화 추진전략 및 계획 - 가. 추진 목표 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">4</span>
+    <span>사업화 추진전략 및 계획</span>
+  </div>
+
+  <div class="sub-section-title">가. 추진 목표</div>
+
+  <div class="sub-sub-title">1) 최종 목표</div>
+  <div class="highlight-box">
+    <strong>AI 기반 바이오 재생가죽 배합 최적화 시스템의 상용화 및 B2B SaaS 서비스 론칭</strong>
+    <ul class="bullet-list" style="margin-top: 6px;">
+      <li>TRL 6 (현재) -> TRL 8 (사업화 검증 완료) 달성</li>
+      <li>자사 생산 효율화 + 외부 업체 대상 서비스 판매 동시 추진</li>
+    </ul>
+  </div>
+
+  <div class="sub-sub-title">2) 단계별 목표</div>
+  <table>
+    <tr>
+      <th style="width:18%;">단계</th>
+      <th style="width:15%;">시기</th>
+      <th>목표</th>
+      <th style="width:15%;">TRL</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">1단계</td>
+      <td class="center">1~6개월</td>
+      <td>
+        <ul class="dash-list">
+          <li>기존 레시피 DB 표준화 및 정제</li>
+          <li>AI/ML 모델 프로토타입 개발</li>
+          <li>물성 예측 모델 v1.0 검증</li>
+        </ul>
+      </td>
+      <td class="center">6 -> 7</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">2단계</td>
+      <td class="center">7~12개월</td>
+      <td>
+        <ul class="dash-list">
+          <li>미감 예측 모델 개발 및 통합</li>
+          <li>LCA 자동 산출 모듈 연동</li>
+          <li>파일럿 고객 3곳 테스트</li>
+        </ul>
+      </td>
+      <td class="center">7 -> 8</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">3단계</td>
+      <td class="center">13~18개월</td>
+      <td>
+        <ul class="dash-list">
+          <li>B2B SaaS 플랫폼 정식 런칭</li>
+          <li>DPP/CBAM 대응 모듈 출시</li>
+          <li>유료 고객 10곳 확보</li>
+        </ul>
+      </td>
+      <td class="center">8 (상용화)</td>
+    </tr>
+  </table>
+
+  <div class="sub-sub-title mt-20">3) 핵심 성과 지표 (KPI)</div>
+  <table>
+    <tr>
+      <th style="width:30%;">지표</th>
+      <th style="width:25%;">1차년도</th>
+      <th style="width:25%;">2차년도</th>
+      <th style="width:20%;">측정 방법</th>
+    </tr>
+    <tr>
+      <td class="fw-bold">물성 예측 정확도</td>
+      <td class="center">85% 이상</td>
+      <td class="center">92% 이상</td>
+      <td class="center">KATRI 시험 대비</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">샘플 제작 비용 절감</td>
+      <td class="center">30% 절감</td>
+      <td class="center">50% 절감</td>
+      <td class="center">시험 횟수 비교</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">신규 배합 개발 기간</td>
+      <td class="center">50% 단축</td>
+      <td class="center">70% 단축</td>
+      <td class="center">프로젝트 소요 기간</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">B2B 파일럿 고객</td>
+      <td class="center">3곳</td>
+      <td class="center">10곳</td>
+      <td class="center">계약 건수</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">SaaS 매출</td>
+      <td class="center">50M</td>
+      <td class="center">200M</td>
+      <td class="center">월간 반복 수익</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ========================================== -->
+<!-- 4. 나. 사업화 가능성 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title" style="border-bottom: none; margin-bottom: 10px; padding-bottom: 0;">
+    <span class="section-number">4</span>
+    <span>사업화 추진전략 및 계획 (계속)</span>
+  </div>
+
+  <div class="sub-section-title">나. 사업화 가능성</div>
+
+  <div class="sub-sub-title">1) 기술적 가능성</div>
+  <ul class="bullet-list">
+    <li><strong>데이터 자산 확보</strong>: PU 코팅 업체 협력으로 수백건의 배합 레시피 + 물성 시험 결과 보유</li>
+    <li><strong>AI/ML 기술 성숙도</strong>: 소재 물성 예측은 이미 타 분야(반도체, 배터리)에서 검증된 기술</li>
+    <li><strong>도메인 전문성</strong>: 자체 생산 경험을 통한 가죽 도메인 지식 축적</li>
+    <li><strong>TRL 6 달성</strong>: 시제품 수준의 재생가죽 생산 역량 확보 완료</li>
+  </ul>
+
+  <div class="sub-sub-title mt-20">2) 시장적 가능성</div>
+  <ul class="bullet-list">
+    <li><strong>수요 측면</strong>: EU 환경규제(CBAM, DPP) 시행으로 환경 데이터 자동화 수요 급증</li>
+    <li><strong>공급 측면</strong>: 국내 가죽 배합 AI 솔루션 공급자 부재 - First Mover 기회</li>
+    <li><strong>고객 기반</strong>: 국내 합성피혁/PU 업체 약 200개사 - 즉시 접근 가능 타겟</li>
+    <li><strong>단가 구조</strong>: SaaS 구독형으로 초기 부담 최소화 - 중소기업 진입 용이</li>
+  </ul>
+
+  <div class="sub-sub-title mt-20">3) 경영적 가능성</div>
+  <table>
+    <tr>
+      <th style="width:25%;">항목</th>
+      <th>강점</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">대표 역량</td>
+      <td>의상학(소재) + KAIST 경영대학원(기술경영) 융합 배경</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">기존 매출</td>
+      <td>연 266M 매출로 사업 지속 가능성 확보</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">인증/수상</td>
+      <td>ISO 14001, RCS 인증 + ESG 우수기업상 - 브랜드 신뢰도</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">협력 네트워크</td>
+      <td>PU 코팅 업체, 빌드업코리아 등 기존 거래처 기반 확장</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">관계회사</td>
+      <td>언바운드(전시/컨벤션) 통한 마케팅/홍보 시너지</td>
+    </tr>
+  </table>
+
+  <div class="sub-sub-title mt-20">4) SWOT 분석</div>
+  <table>
+    <tr>
+      <th style="width:50%; background: #E8F0E8;">강점 (Strengths)</th>
+      <th style="width:50%; background: #FFF3E0;">약점 (Weaknesses)</th>
+    </tr>
+    <tr>
+      <td>
+        <ul class="dash-list">
+          <li>수백건 배합 레시피 DB (경쟁 우위 자산)</li>
+          <li>바이오탄소함량 78% 핵심 기술력</li>
+          <li>ISO 14001/RCS 국제 인증</li>
+          <li>대표의 소재+경영 융합 역량</li>
+        </ul>
+      </td>
+      <td>
+        <ul class="dash-list">
+          <li>소규모 조직 (4명)</li>
+          <li>AI/ML 전담 인력 부재 (위탁 필요)</li>
+          <li>자본금 규모 제한적</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th style="background: #E3F2FD;">기회 (Opportunities)</th>
+      <th style="background: #FFEBEE;">위협 (Threats)</th>
+    </tr>
+    <tr>
+      <td>
+        <ul class="dash-list">
+          <li>EU CBAM/DPP 규제로 수요 급증</li>
+          <li>글로벌 합성피혁 시장 연 8~10% 성장</li>
+          <li>국내 First Mover 지위 확보 가능</li>
+          <li>ESG 경영 확산 트렌드</li>
+        </ul>
+      </td>
+      <td>
+        <ul class="dash-list">
+          <li>글로벌 AI 소재 기업 국내 진출 가능성</li>
+          <li>대기업 후발 진입 리스크</li>
+          <li>레시피 데이터 추가 확보 한계</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- ========================================== -->
+<!-- 4. 다. 추진계획 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title" style="border-bottom: none; margin-bottom: 10px; padding-bottom: 0;">
+    <span class="section-number">4</span>
+    <span>사업화 추진전략 및 계획 (계속)</span>
+  </div>
+
+  <div class="sub-section-title">다. 추진계획</div>
+
+  <div class="sub-sub-title">1) 기술 개발 계획</div>
+  <table>
+    <tr>
+      <th style="width:8%;">No.</th>
+      <th style="width:25%;">과제명</th>
+      <th style="width:37%;">세부 내용</th>
+      <th style="width:15%;">기간</th>
+      <th style="width:15%;">담당</th>
+    </tr>
+    <tr>
+      <td class="center">1</td>
+      <td class="fw-bold">데이터 표준화</td>
+      <td>
+        <ul class="dash-list">
+          <li>레시피 DB 구조 설계 및 정제</li>
+          <li>물성 시험 데이터 정규화</li>
+          <li>미감 평가 데이터 수치화 체계 수립</li>
+        </ul>
+      </td>
+      <td class="center">M1~M3</td>
+      <td class="center">연구팀/위탁</td>
+    </tr>
+    <tr>
+      <td class="center">2</td>
+      <td class="fw-bold">물성 예측 모델</td>
+      <td>
+        <ul class="dash-list">
+          <li>회귀/앙상블 모델 설계 및 학습</li>
+          <li>KATRI 기준 정확도 검증</li>
+          <li>용도별 가중치 파라미터 설정</li>
+        </ul>
+      </td>
+      <td class="center">M3~M8</td>
+      <td class="center">위탁/연구팀</td>
+    </tr>
+    <tr>
+      <td class="center">3</td>
+      <td class="fw-bold">미감 예측 모델</td>
+      <td>
+        <ul class="dash-list">
+          <li>관능평가 데이터 정량화</li>
+          <li>다중출력 예측 모델 개발</li>
+          <li>물성 모델과 통합</li>
+        </ul>
+      </td>
+      <td class="center">M6~M10</td>
+      <td class="center">위탁/연구팀</td>
+    </tr>
+    <tr>
+      <td class="center">4</td>
+      <td class="fw-bold">LCA/환경 모듈</td>
+      <td>
+        <ul class="dash-list">
+          <li>원료별 탄소배출계수 DB 구축</li>
+          <li>실시간 LCA 산출 엔진 개발</li>
+          <li>유해물질 스크리닝 로직 구현</li>
+        </ul>
+      </td>
+      <td class="center">M8~M12</td>
+      <td class="center">위탁/연구팀</td>
+    </tr>
+    <tr>
+      <td class="center">5</td>
+      <td class="fw-bold">B2B SaaS 플랫폼</td>
+      <td>
+        <ul class="dash-list">
+          <li>웹 기반 UI/UX 개발</li>
+          <li>API 설계 및 보안 구현</li>
+          <li>DPP 데이터 출력 모듈</li>
+        </ul>
+      </td>
+      <td class="center">M10~M15</td>
+      <td class="center">위탁</td>
+    </tr>
+  </table>
+
+  <div class="sub-sub-title mt-20">2) 사업화 전략</div>
+
+  <table>
+    <tr>
+      <th style="width:20%;">전략</th>
+      <th style="width:45%;">내용</th>
+      <th style="width:35%;">기대 성과</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">자체 활용</td>
+      <td>
+        <ul class="dash-list">
+          <li>자사 재생가죽 생산에 우선 적용</li>
+          <li>시험 비용/폐기물 절감 실적 축적</li>
+        </ul>
+      </td>
+      <td>원가 30~50% 절감, 개발 기간 단축</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">B2B SaaS</td>
+      <td>
+        <ul class="dash-list">
+          <li>구독형 서비스 (월/연 과금)</li>
+          <li>배합 최적화 + 환경 데이터 패키지</li>
+        </ul>
+      </td>
+      <td>반복 수익(MRR) 확보, 고객 10곳+</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">레시피 판매</td>
+      <td>
+        <ul class="dash-list">
+          <li>최적화된 배합 레시피 단건 판매</li>
+          <li>용도별 맞춤 레시피 컨설팅</li>
+        </ul>
+      </td>
+      <td>건당 고수익, 컨설팅 매출</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">규제 대응</td>
+      <td>
+        <ul class="dash-list">
+          <li>CBAM/DPP 대응 환경 리포트 생성 서비스</li>
+          <li>ESG 공시 데이터 제공</li>
+        </ul>
+      </td>
+      <td>규제 의무화에 따른 안정적 수요</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ========================================== -->
+<!-- 4. 라. 기대효과 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title" style="border-bottom: none; margin-bottom: 10px; padding-bottom: 0;">
+    <span class="section-number">4</span>
+    <span>사업화 추진전략 및 계획 (계속)</span>
+  </div>
+
+  <div class="sub-section-title">라. 기대효과</div>
+
+  <div class="sub-sub-title">1) 정량적 효과</div>
+  <table>
+    <tr>
+      <th style="width:30%;">항목</th>
+      <th style="width:25%;">현재</th>
+      <th style="width:25%;">도입 후</th>
+      <th style="width:20%;">개선율</th>
+    </tr>
+    <tr>
+      <td class="fw-bold">샘플 제작 비용</td>
+      <td class="center">건당 약 500만원</td>
+      <td class="center">건당 약 250만원</td>
+      <td class="center fw-bold text-green">50% 절감</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">시험 폐기물</td>
+      <td class="center">월 약 200kg</td>
+      <td class="center">월 약 80kg</td>
+      <td class="center fw-bold text-green">60% 감소</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">신규 배합 개발 기간</td>
+      <td class="center">3~6개월</td>
+      <td class="center">1~2개월</td>
+      <td class="center fw-bold text-green">70% 단축</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">LCA 산출 비용</td>
+      <td class="center">건당 300~500만원</td>
+      <td class="center">시스템 내 자동</td>
+      <td class="center fw-bold text-green">90%+ 절감</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">KATRI 시험 통과율</td>
+      <td class="center">약 60%</td>
+      <td class="center">약 90%</td>
+      <td class="center fw-bold text-green">30%p 향상</td>
+    </tr>
+  </table>
+
+  <div class="sub-sub-title mt-20">2) 정성적 효과</div>
+  <ul class="bullet-list">
+    <li><strong>기술 민주화</strong>: 화학공학 전문 엔지니어 없이도 소재 설계 가능 (중소기업 적합)</li>
+    <li><strong>규제 선제 대응</strong>: EU CBAM/DPP 의무화 시행 전 시스템 구축 완료</li>
+    <li><strong>데이터 자산화</strong>: 배합 노하우의 체계적 디지털 자산화 (인력 이탈 리스크 방지)</li>
+    <li><strong>환경 리더십</strong>: 바이오 재생가죽 업계 AI 활용 선도 기업 포지셔닝</li>
+    <li><strong>고객 신뢰도 향상</strong>: 객관적 데이터 기반 품질 보증으로 B2B 고객 신뢰 확보</li>
+  </ul>
+
+  <div class="sub-sub-title mt-20">3) 매출 전망</div>
+  <div class="diagram">
+    <div class="diagram-title">사업화 후 매출 전망 (백만원)</div>
+    <div class="bar-chart">
+      <div class="bar-item">
+        <div class="bar-label">1차년도</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 25%;">316M (기존266+SaaS50)</div>
+        </div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">2차년도</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 50%;">566M (기존300+SaaS200+레시피66)</div>
+        </div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">3차년도</div>
+        <div class="bar-track">
+          <div class="bar-fill light" style="width: 85%;">1,000M (기존350+SaaS450+레시피200)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-sub-title mt-20">4) 산업적 파급효과</div>
+  <ul class="bullet-list">
+    <li><strong>국내 가죽/소재 산업</strong>: 중소 업체의 디지털 전환 촉진, AI 소재설계 생태계 조성</li>
+    <li><strong>환경 분야</strong>: 친환경 소재 확산 가속, 산업 폐기물 감소 기여</li>
+    <li><strong>일자리 창출</strong>: AI+소재 융합 인력 양성, 관련 서비스업 고용 확대</li>
+  </ul>
+</div>
+
+<!-- ========================================== -->
+<!-- 5. 위탁사업 추진계획 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">5</span>
+    <span>위탁사업 추진계획</span>
+  </div>
+
+  <div class="sub-section-title">5-1. 위탁 개요</div>
+  <div class="highlight-box">
+    <strong>위탁 사유</strong>: AI/ML 모델 개발 전문 역량 보완
+    <ul class="bullet-list" style="margin-top: 6px;">
+      <li>자사 강점: 가죽 배합 도메인 지식, 레시피 데이터, 물성 평가 역량</li>
+      <li>위탁 영역: AI/ML 모델 개발, 데이터 파이프라인 구축, SaaS 플랫폼 개발</li>
+      <li>협업 방식: 도메인 지식(자사) + 기술 구현(위탁) 긴밀 협업</li>
+    </ul>
+  </div>
+
+  <div class="sub-section-title">5-2. 위탁 범위</div>
+  <table>
+    <tr>
+      <th style="width:8%;">No.</th>
+      <th style="width:25%;">위탁 과제</th>
+      <th style="width:37%;">세부 내용</th>
+      <th style="width:15%;">기간</th>
+      <th style="width:15%;">산출물</th>
+    </tr>
+    <tr>
+      <td class="center">1</td>
+      <td class="fw-bold">데이터 파이프라인</td>
+      <td>
+        <ul class="dash-list">
+          <li>레시피 DB 스키마 설계</li>
+          <li>ETL 파이프라인 구축</li>
+          <li>데이터 품질 검증 모듈</li>
+        </ul>
+      </td>
+      <td class="center">M1~M4</td>
+      <td class="center">DB / ETL 시스템</td>
+    </tr>
+    <tr>
+      <td class="center">2</td>
+      <td class="fw-bold">AI/ML 모델 개발</td>
+      <td>
+        <ul class="dash-list">
+          <li>물성 예측 모델 개발 및 튜닝</li>
+          <li>미감 예측 모델 개발</li>
+          <li>배합 최적화 엔진 구현</li>
+        </ul>
+      </td>
+      <td class="center">M3~M10</td>
+      <td class="center">학습 모델 / API</td>
+    </tr>
+    <tr>
+      <td class="center">3</td>
+      <td class="fw-bold">LCA 모듈 개발</td>
+      <td>
+        <ul class="dash-list">
+          <li>탄소배출계수 DB 구축</li>
+          <li>실시간 LCA 산출 엔진</li>
+          <li>유해물질 스크리닝 로직</li>
+        </ul>
+      </td>
+      <td class="center">M8~M12</td>
+      <td class="center">LCA 모듈</td>
+    </tr>
+    <tr>
+      <td class="center">4</td>
+      <td class="fw-bold">SaaS 플랫폼</td>
+      <td>
+        <ul class="dash-list">
+          <li>웹 프론트엔드/백엔드 개발</li>
+          <li>사용자 인터페이스 설계</li>
+          <li>보안/인증/과금 시스템</li>
+        </ul>
+      </td>
+      <td class="center">M10~M15</td>
+      <td class="center">SaaS 플랫폼</td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">5-3. 위탁 관리 계획</div>
+  <table>
+    <tr>
+      <th style="width:25%;">관리 항목</th>
+      <th>내용</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">진도 관리</td>
+      <td>월 1회 정기 진도 보고 + 마일스톤별 검수 (총 5회)</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">품질 관리</td>
+      <td>각 산출물 기준서 사전 합의, 정량적 품질 기준(예측 정확도 등) 설정</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">보안 관리</td>
+      <td>레시피 데이터 비밀유지계약(NDA), 접근 권한 통제</td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">지식재산</td>
+      <td>개발 결과물 지식재산권 귀속 사전 합의 (자사 귀속 원칙)</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ========================================== -->
+<!-- 6. 사업화 추진체계 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">6</span>
+    <span>사업화 추진체계</span>
+  </div>
+
+  <div class="sub-section-title">6-1. 추진 조직</div>
+
+  <div class="diagram">
+    <div class="diagram-title">사업화 추진 조직도</div>
+    <div class="org-chart">
+      <div class="org-top">
+        총괄 책임: 서인아 대표
+        <small>사업 전략/의사결정/대외 협력</small>
+      </div>
+      <div class="org-line"></div>
+      <div class="org-branch-line" style="margin: 0 40px;"></div>
+      <div class="org-branches">
+        <div class="org-branch">
+          <div class="org-branch-vline"></div>
+          <div class="org-box">
+            기획/사업화
+            <small>박서빈 - 사업기획, 고객관리, 마케팅</small>
+          </div>
+        </div>
+        <div class="org-branch">
+          <div class="org-branch-vline"></div>
+          <div class="org-box">
+            연구/프로덕션
+            <small>성현우(팀장) - 도메인 지식, 검증</small>
+          </div>
+        </div>
+        <div class="org-branch">
+          <div class="org-branch-vline"></div>
+          <div class="org-box">
+            유통/영업
+            <small>김정빈 - B2B 영업, 채널 구축</small>
+          </div>
+        </div>
+        <div class="org-branch">
+          <div class="org-branch-vline"></div>
+          <div class="org-box" style="border-style: dashed;">
+            위탁 개발사
+            <small>AI/ML + SaaS 플랫폼 개발</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section-title">6-2. 역할 분담</div>
+  <table>
+    <tr>
+      <th style="width:18%;">담당</th>
+      <th style="width:20%;">담당자</th>
+      <th>주요 역할</th>
+    </tr>
+    <tr>
+      <td class="center fw-bold">총괄</td>
+      <td class="center">서인아 대표</td>
+      <td>
+        <ul class="dash-list">
+          <li>사업 전략 수립 및 의사결정</li>
+          <li>대외 협력/투자 유치</li>
+          <li>위탁사업 총괄 관리</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">기획</td>
+      <td class="center">박서빈</td>
+      <td>
+        <ul class="dash-list">
+          <li>사업화 계획 수립 및 관리</li>
+          <li>파일럿 고객 발굴 및 관리</li>
+          <li>SaaS 서비스 기획</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">연구</td>
+      <td class="center">성현우 팀장</td>
+      <td>
+        <ul class="dash-list">
+          <li>배합 도메인 지식 제공</li>
+          <li>데이터 품질 검증/라벨링</li>
+          <li>AI 모델 성능 검증 (KATRI 기준)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">유통</td>
+      <td class="center">김정빈</td>
+      <td>
+        <ul class="dash-list">
+          <li>B2B 영업 채널 구축</li>
+          <li>고객사 기술 지원</li>
+          <li>레시피 판매 실행</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="center fw-bold">위탁사</td>
+      <td class="center">선정 예정</td>
+      <td>
+        <ul class="dash-list">
+          <li>AI/ML 모델 설계, 개발, 최적화</li>
+          <li>데이터 파이프라인 / SaaS 플랫폼 구축</li>
+          <li>LCA 모듈 / 유해물질 스크리닝 개발</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">6-3. 외부 협력</div>
+  <ul class="bullet-list">
+    <li><strong>KATRI (한국의류시험연구원)</strong>: 물성 시험 및 예측 모델 검증 파트너</li>
+    <li><strong>PU 코팅 협력업체</strong>: 추가 레시피 데이터 확보, 공동 실증</li>
+    <li><strong>KAIST 등 연구기관</strong>: AI 모델 고도화 자문, 미감 데이터 연구 협력</li>
+    <li><strong>언바운드</strong>: 전시/컨벤션 통한 마케팅 및 고객 접점 확보</li>
+  </ul>
+</div>
+
+<!-- ========================================== -->
+<!-- 7. 추진일정 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">7</span>
+    <span>추진일정</span>
+  </div>
+
+  <div class="sub-section-title">7-1. 전체 로드맵</div>
+
+  <!-- 사업화 로드맵 타임라인 -->
+  <div class="diagram">
+    <div class="diagram-title">사업화 로드맵 (18개월)</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">M1~M3</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>[1단계] 데이터 기반 구축</strong><br>
+          레시피 DB 표준화 / 데이터 정제 / 피처 설계 / ETL 파이프라인 구축
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">M3~M6</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>[1단계] 물성 예측 모델 v1.0</strong><br>
+          회귀/앙상블 모델 개발 / KATRI 기준 검증 / 용도별 가중치 설정
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">M6~M8</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>[2단계] 미감 예측 모델</strong><br>
+          관능평가 데이터 정량화 / 다중출력 모델 개발 / 물성 모델 통합
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">M8~M10</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>[2단계] LCA/환경 모듈</strong><br>
+          탄소배출계수 DB / 실시간 LCA 엔진 / 유해물질 스크리닝
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">M10~M12</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>[2단계] 파일럿 테스트</strong><br>
+          통합 시스템 내부 검증 / 파일럿 고객 3곳 테스트 / 피드백 반영
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">M12~M15</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>[3단계] SaaS 플랫폼 개발</strong><br>
+          웹 UI/UX / API 설계 / 보안/인증/과금 / DPP 출력 모듈
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">M15~M18</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <strong>[3단계] 상용화 런칭</strong><br>
+          B2B SaaS 정식 런칭 / 유료 고객 10곳 확보 / 마케팅 본격화
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section-title">7-2. 간트 차트</div>
+  <table>
+    <tr>
+      <th style="width:22%;">과제</th>
+      <th style="width:6.5%;">M1</th>
+      <th style="width:6.5%;">M3</th>
+      <th style="width:6.5%;">M5</th>
+      <th style="width:6.5%;">M7</th>
+      <th style="width:6.5%;">M9</th>
+      <th style="width:6.5%;">M11</th>
+      <th style="width:6.5%;">M13</th>
+      <th style="width:6.5%;">M15</th>
+      <th style="width:6.5%;">M17</th>
+    </tr>
+    <tr>
+      <td class="fw-bold fs-small">데이터 표준화</td>
+      <td colspan="2" style="background: var(--green); opacity: 0.8;"></td>
+      <td colspan="7"></td>
+    </tr>
+    <tr>
+      <td class="fw-bold fs-small">물성 예측 모델</td>
+      <td></td>
+      <td colspan="3" style="background: var(--green); opacity: 0.8;"></td>
+      <td colspan="5"></td>
+    </tr>
+    <tr>
+      <td class="fw-bold fs-small">미감 예측 모델</td>
+      <td colspan="2"></td>
+      <td colspan="3" style="background: var(--green-light); opacity: 0.8;"></td>
+      <td colspan="4"></td>
+    </tr>
+    <tr>
+      <td class="fw-bold fs-small">LCA/환경 모듈</td>
+      <td colspan="3"></td>
+      <td colspan="3" style="background: var(--green-light); opacity: 0.8;"></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr>
+      <td class="fw-bold fs-small">파일럿 테스트</td>
+      <td colspan="4"></td>
+      <td colspan="2" style="background: #FFA726; opacity: 0.7;"></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr>
+      <td class="fw-bold fs-small">SaaS 플랫폼</td>
+      <td colspan="5"></td>
+      <td colspan="3" style="background: var(--green); opacity: 0.8;"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="fw-bold fs-small">상용화/런칭</td>
+      <td colspan="6"></td>
+      <td colspan="3" style="background: #2E7D32; opacity: 0.9;"></td>
+    </tr>
+  </table>
+  <p class="fs-small" style="color: #999; margin-top: 4px;">*M = Month (개월차)</p>
+</div>
+
+<!-- ========================================== -->
+<!-- 8. 사후관리 계획 -->
+<!-- ========================================== -->
+<div class="page">
+  <div class="section-title">
+    <span class="section-number">8</span>
+    <span>사후관리 계획</span>
+  </div>
+
+  <div class="sub-section-title">8-1. 기술 유지보수</div>
+  <table>
+    <tr>
+      <th style="width:25%;">항목</th>
+      <th style="width:45%;">내용</th>
+      <th style="width:15%;">주기</th>
+      <th style="width:15%;">담당</th>
+    </tr>
+    <tr>
+      <td class="fw-bold">모델 재학습</td>
+      <td>
+        <ul class="dash-list">
+          <li>신규 레시피 데이터 반영</li>
+          <li>예측 정확도 모니터링 및 모델 업데이트</li>
+        </ul>
+      </td>
+      <td class="center">분기 1회</td>
+      <td class="center">연구팀</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">DB 관리</td>
+      <td>
+        <ul class="dash-list">
+          <li>레시피 DB 백업 및 무결성 점검</li>
+          <li>탄소배출계수 DB 최신화</li>
+        </ul>
+      </td>
+      <td class="center">월 1회</td>
+      <td class="center">위탁사/연구팀</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">시스템 운영</td>
+      <td>
+        <ul class="dash-list">
+          <li>SaaS 플랫폼 가용성 모니터링 (99.5%+)</li>
+          <li>보안 패치 및 인프라 업데이트</li>
+        </ul>
+      </td>
+      <td class="center">상시</td>
+      <td class="center">위탁사</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">규제 대응</td>
+      <td>
+        <ul class="dash-list">
+          <li>EU CBAM/DPP 규격 변경 사항 반영</li>
+          <li>국내 환경 규제 변동 모니터링</li>
+        </ul>
+      </td>
+      <td class="center">반기 1회</td>
+      <td class="center">기획팀</td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">8-2. 사업 성과 관리</div>
+  <table>
+    <tr>
+      <th style="width:25%;">관리 항목</th>
+      <th style="width:45%;">내용</th>
+      <th style="width:15%;">주기</th>
+      <th style="width:15%;">보고 대상</th>
+    </tr>
+    <tr>
+      <td class="fw-bold">매출 성과</td>
+      <td>SaaS 구독 매출, 레시피 판매 매출, 기존 사업 매출 추적</td>
+      <td class="center">월 1회</td>
+      <td class="center">대표이사</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">고객 만족도</td>
+      <td>파일럿/유료 고객 사용 만족도 조사 및 피드백 수집</td>
+      <td class="center">분기 1회</td>
+      <td class="center">기획팀</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">KPI 달성</td>
+      <td>예측 정확도, 비용 절감율, 고객 수 등 핵심 지표 추적</td>
+      <td class="center">분기 1회</td>
+      <td class="center">전체</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">사업 보고</td>
+      <td>사업화 종합 성과 보고 (정부 지원 사업 기준)</td>
+      <td class="center">반기 1회</td>
+      <td class="center">지원 기관</td>
+    </tr>
+  </table>
+
+  <div class="sub-section-title">8-3. 지속 성장 계획</div>
+  <ul class="bullet-list">
+    <li><strong>데이터 확장</strong>: 고객사 데이터 (익명화) 축적으로 모델 정확도 지속 향상</li>
+    <li><strong>기능 확장</strong>: 자동차 내장재, 스포츠용품 등 신규 용도 대응 모델 추가</li>
+    <li><strong>해외 진출</strong>: 동남아/유럽 합성피혁 업체 대상 SaaS 글로벌 확장</li>
+    <li><strong>플랫폼 고도화</strong>: AI 모델 자동 튜닝, 고객 맞춤 모델 학습 기능 추가</li>
+    <li><strong>IP 확보</strong>: AI 배합 최적화 방법론 관련 추가 특허 출원</li>
+  </ul>
+
+  <div class="sub-section-title">8-4. 리스크 관리</div>
+  <table>
+    <tr>
+      <th style="width:20%;">리스크</th>
+      <th style="width:15%;">발생 확률</th>
+      <th style="width:15%;">영향도</th>
+      <th style="width:50%;">대응 방안</th>
+    </tr>
+    <tr>
+      <td class="fw-bold">데이터 부족</td>
+      <td class="center">중</td>
+      <td class="center">높음</td>
+      <td>PU 코팅 협력사 확대, 고객사 데이터 풀링, 합성 데이터 생성</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">모델 정확도 미달</td>
+      <td class="center">중</td>
+      <td class="center">높음</td>
+      <td>전문가 검증 체계 병행, 하이브리드(AI+전문가) 방식 운영</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">고객 확보 지연</td>
+      <td class="center">중</td>
+      <td class="center">중</td>
+      <td>무료 시범 서비스 제공, 업계 전시회/세미나 적극 참여</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">규제 변동</td>
+      <td class="center">낮음</td>
+      <td class="center">중</td>
+      <td>규제 동향 상시 모니터링, 모듈형 설계로 빠른 대응</td>
+    </tr>
+    <tr>
+      <td class="fw-bold">경쟁사 진입</td>
+      <td class="center">중</td>
+      <td class="center">중</td>
+      <td>데이터 선점 우위 강화, 고객 락인 전략, IP 확보</td>
+    </tr>
+  </table>
+
+  <div class="highlight-box mt-20">
+    <strong>사후관리 핵심 원칙</strong>
+    <ul class="bullet-list" style="margin-top: 6px;">
+      <li>데이터 > 모델: 지속적 데이터 축적이 경쟁 우위의 핵심</li>
+      <li>고객 피드백 루프: 사용 데이터 기반 모델 자동 개선 체계 구축</li>
+      <li>규제 선제 대응: EU DPP 시행(2027) 전 완전 대응 체계 확보</li>
+      <li>IP 보호: 핵심 알고리즘/데이터 자산의 법적 보호 지속 강화</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
