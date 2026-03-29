@@ -753,6 +753,56 @@ p { margin: 4px 0; text-indent: 0; }
   <h2>3. 사업화 대상 제품/설비의 개요</h2>
 
   <h3>가. 사업화 대상 제품/설비 요약</h3>
+
+  <!-- 한눈에 보는 핵심 기술 -->
+  <div style="border:2px solid #2C5F2D;border-radius:8px;padding:20px;margin-bottom:20px;background:#f9fdf9;">
+    <div style="text-align:center;font-size:13pt;font-weight:700;margin-bottom:16px;color:#2C5F2D;">한눈에 보는 핵심 기술</div>
+    
+    <!-- 문제 → 해결 -->
+    <div style="display:flex;gap:16px;margin-bottom:16px;">
+      <div style="flex:1;background:#fff;border:1px solid #ddd;border-radius:6px;padding:14px;">
+        <div style="font-weight:700;font-size:10pt;color:#999;margin-bottom:8px;">AS-IS (기존)</div>
+        <div style="font-size:9pt;line-height:1.7;">
+          - 새 가죽 개발 시 <b>수십 번 반복 실험</b><br>
+          - 배합비 조정 → 샘플 제작 → 물성 시험 → 실패 → 다시<br>
+          - <b>화학공학 전문가 필수</b> (중소기업 채용 어려움)<br>
+          - 샘플 폐기물 대량 발생<br>
+          - 개발 기간 6~12개월
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:20pt;color:#2C5F2D;font-weight:700;">&#8594;</div>
+      <div style="flex:1;background:#fff;border:2px solid #2C5F2D;border-radius:6px;padding:14px;">
+        <div style="font-weight:700;font-size:10pt;color:#2C5F2D;margin-bottom:8px;">TO-BE (AI 적용 후)</div>
+        <div style="font-size:9pt;line-height:1.7;">
+          - 기존 레시피 데이터 + AI → <b>최적 배합비 자동 도출</b><br>
+          - 물성(강도/내마모) + 미감(촉감/질감) <b>사전 예측</b><br>
+          - <b>전문가 없이도</b> 소재 설계 가능<br>
+          - 샘플 제작 50%+ 감소, 폐기물 절감<br>
+          - 개발 기간 <b>2~4개월로 단축</b>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 핵심 3가지 -->
+    <div style="display:flex;gap:12px;">
+      <div style="flex:1;background:#2C5F2D;color:#fff;border-radius:6px;padding:12px;text-align:center;">
+        <div style="font-size:18pt;font-weight:800;margin-bottom:4px;">01</div>
+        <div style="font-size:9pt;font-weight:700;">AI 배합 최적화</div>
+        <div style="font-size:8pt;opacity:0.8;margin-top:4px;">기존 데이터 기반<br>최적 배합비 자동 도출</div>
+      </div>
+      <div style="flex:1;background:#2C5F2D;color:#fff;border-radius:6px;padding:12px;text-align:center;">
+        <div style="font-size:18pt;font-weight:800;margin-bottom:4px;">02</div>
+        <div style="font-size:9pt;font-weight:700;">물성/미감 예측</div>
+        <div style="font-size:8pt;opacity:0.8;margin-top:4px;">KATRI 시험 통과 기준<br>사전 검증</div>
+      </div>
+      <div style="flex:1;background:#2C5F2D;color:#fff;border-radius:6px;padding:12px;text-align:center;">
+        <div style="font-size:18pt;font-weight:800;margin-bottom:4px;">03</div>
+        <div style="font-size:9pt;font-weight:700;">실시간 LCA 산출</div>
+        <div style="font-size:8pt;opacity:0.8;margin-top:4px;">배합 변경 시<br>탄소배출량 즉시 계산</div>
+      </div>
+    </div>
+  </div>
+
   <table>
     <tr>
       <th style="width:18%;">제품/설비명</th>
@@ -862,7 +912,11 @@ p { margin: 4px 0; text-indent: 0; }
   <h3>나. 사업화 대상 제품/설비 원리 및 우수성</h3>
 
   <h4>(1) 사업화 대상 제품/설비 핵심기술의 원리</h4>
-  <p class="bullet-circle">본 사업화 대상 제품/설비는 바이오 재생가죽 제조를 위한 소재 인포매틱스(Materials Informatics, MI) 기반 최적 배합 및 실시간 전생애주기평가(LCA) 산출기임</p>
+  <div style="background:#f5f5f5;border-radius:6px;padding:14px;margin-bottom:12px;">
+    <div style="font-weight:700;margin-bottom:8px;">기술 한 줄 요약</div>
+    <div style="font-size:11pt;"><b>기존 가죽 레시피 데이터</b>를 AI가 학습 → 새 소재 투입 시 <b>최적 배합비 + 물성 + 탄소량</b>을 자동 계산하는 산출기</div>
+  </div>
+  <p class="bullet-circle">기존: 반복 실험(시행착오) → 본 기술: 사전 계산(Design-before-Make)</p>
   <p class="bullet">본 산출기는 다수 사용자가 참여하는 서비스형 플랫폼이 아니라, 배합 조건 입력 시 물성 및 환경 영향을 정량적으로 계산/예측하여 소재 설계 단계에서의 의사결정을 지원하는 공학적 계산 장치임</p>
   <p class="bullet">기존 바이오 재생가죽 개발은 반복적인 실험과 사후 물성 시험, 사후 LCA 분석에 의존하는 구조로 인해 개발 기간이 장기화되고, 탄소 저감 효과를 설계 단계에서 확보하기 어려운 한계가 있음</p>
   <p class="bullet">본 기술은 기존 실험 및 공정 데이터를 기반으로 물성 예측 -> 최적 배합 도출 -> 환경영향 산출을 하나의 계산 흐름으로 통합함으로써 고기능/저탄소 바이오 재생가죽의 사업화를 가능하게 함</p>
